@@ -1,0 +1,54 @@
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    foto_perfil VARCHAR(255)
+);
+
+CREATE TABLE categorias (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT
+);
+
+CREATE TABLE experiencias (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    descricao TEXT NOT NULL,
+    localizacao VARCHAR(255) NOT NULL,
+    preco NUMERIC(10, 2) NOT NULL,
+    categoria_id INT NOT NULL REFERENCES categorias(id) ON DELETE CASCADE,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    media_avaliacoes NUMERIC(3, 2) DEFAULT 0
+);
+
+
+CREATE TABLE avaliacoes (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+    experiencia_id INT NOT NULL REFERENCES experiencias(id) ON DELETE CASCADE,
+    nota INT NOT NULL CHECK (nota BETWEEN 1 AND 5),
+    comentario TEXT,
+    data_avaliacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE imagens (
+    id SERIAL PRIMARY KEY,
+    experiencia_id INT NOT NULL REFERENCES experiencias(id) ON DELETE CASCADE,
+    url_imagem VARCHAR(255) NOT NULL
+);
+
+
+INSERT INTO categorias (nome, descricao) VALUES
+('Aventura', 'Atividades como trilhas, escaladas e esportes radicais.'),
+('Cultural', 'Experiências em museus, exposições e locais históricos.'),
+('Gastronomia', 'Restaurantes, bares, degustações e experiências culinárias.'),
+('Lazer', 'Parques, cinemas, atividades recreativas e diversão.'),
+('Natureza', 'Passeios ecológicos, praias, montanhas e parques nacionais.'),
+('Noite', 'Vida noturna, shows, bares e eventos noturnos.'),
+('Bem-estar', 'Experiências como spas, yoga, meditação e relaxamento.'),
+('Compras', 'Feiras locais, shoppings e mercados típicos.'),
+('Eventos', 'Concertos, festivais culturais, feiras e celebrações.'),
+('Esportes', 'Jogos, torneios e atividades esportivas ao ar livre.');
