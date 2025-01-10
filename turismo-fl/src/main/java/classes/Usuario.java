@@ -35,11 +35,11 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idUsuario;
+	private Long id;
 	
 	
 	@Column(name="idUsuario")
-	private Long idusuario;
+	private Long idUsuario;
 	
 	@Column(name = "nome", nullable = false)
 	private String nome;

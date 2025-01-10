@@ -1,5 +1,5 @@
 CREATE TABLE usuarios (
-    id SERIAL PRIMARY KEY,
+    idUsuario SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     senha VARCHAR(255) NOT NULL,
@@ -8,16 +8,18 @@ CREATE TABLE usuarios (
 );
 
 CREATE TABLE categorias (
-    id SERIAL PRIMARY KEY,
+    idCategoria SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     descricao TEXT
 );
 
 CREATE TABLE experiencias (
-    id SERIAL PRIMARY KEY,
+    idExperiencias SERIAL PRIMARY KEY,
     nome VARCHAR(150) NOT NULL,
     descricao TEXT NOT NULL,
-    localizacao VARCHAR(255) NOT NULL,
+    cidade VARCHAR(255) NOT NULL,
+    estado VARCHAR(255) NOT NULL,
+    país VARCHAR(255) NOT NULL,
     preco NUMERIC(10, 2) NOT NULL,
     categoria_id INT NOT NULL REFERENCES categorias(id) ON DELETE CASCADE,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
