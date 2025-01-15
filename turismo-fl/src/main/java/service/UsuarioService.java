@@ -2,9 +2,19 @@ package service;
 
 import java.util.List;
 
-import classes.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import classes.Usuario;
+import repository.UsuarioRepository;
+
+
+@Service
 public class UsuarioService {
+	
+	
+	@Autowired
+	UsuarioRepository usuarioRepository;
 
 	public Usuario inserir(Usuario novoUsuario) {
 		// TODO Auto-generated method stub

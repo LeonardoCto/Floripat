@@ -2,14 +2,29 @@ package service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import classes.Experiencias;
+import exceptions.CampoInvalidoException;
+import repository.ExperienciasRepository;
 import seletor.ExperienciasSeletor;
 
+@Service
 public class ExperienciasService {
 
-	public Experiencias inserir(Experiencias novaExperiencia) {
-		// TODO Auto-generated method stub
-		return null;
+	@Autowired
+	private ExperienciasRepository experienciasRepository;
+
+	public Experiencias inserir(Experiencias novaExperiencia) throws CampoInvalidoException {
+		validarCamposObrigatorios(novaExperiencia);
+		if (novaExperiencia.getIdExperiencias() == null) {
+			return experienciasRepository.save(novaExperiencia);
+
+		} else {
+			throw new IllegalArgumentException("Não é possível inserir uma experiência com um id já definido.");
+
+		}
 	}
 
 	public Object atualizar(Experiencias atualizarExperiencia) {
@@ -37,4 +52,8 @@ public class ExperienciasService {
 		return null;
 	}
 
+	private void validarCamposObrigatorios(Experiencias novaExperiencia) {
+		// TODO Auto-generated method stub
+
+	}
 }
