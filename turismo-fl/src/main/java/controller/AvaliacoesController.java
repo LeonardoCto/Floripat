@@ -12,48 +12,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import classes.Usuario;
+import classes.Avaliacoes;
 import exceptions.CampoInvalidoException;
-import service.UsuarioService;
+import service.AvaliacoesService;
 
 @RestController
-@RequestMapping(path = "/usuario")
-//
+@RequestMapping(path = "/avaliacoes")
 
 //
-
-public class UsuarioController {
+public class AvaliacoesController {
 
 	@Autowired
-	private UsuarioService service = new UsuarioService();
+	private AvaliacoesService service = new AvaliacoesService();
 
 	@PostMapping("/inserir")
-	public Usuario inserir(@RequestBody Usuario novoUsuario) throws CampoInvalidoException {
-		return service.inserir(novoUsuario);
+	public Avaliacoes inserir(@RequestBody Avaliacoes novaAvaliacao) throws CampoInvalidoException {
+		return service.inserir(novaAvaliacao);
 
 	}
 
 	@PutMapping("/atualizar")
-	public boolean atualizar(@RequestBody Usuario atualizarUsuario) throws CampoInvalidoException {
-		return service.atualizar(atualizarUsuario) != null;
-
+	public boolean atualizar(@RequestBody Avaliacoes atualizarAvaliacao) throws CampoInvalidoException {
+		return service.atualizar(atualizarAvaliacao) != null;
 	}
 
 	@DeleteMapping("/{id}")
 	public boolean excluir(@PathVariable int id) {
 		return service.excluir(id);
-
 	}
 
 	@GetMapping("/listarTodos")
-	public List<Usuario> listarTodos() {
-		List<Usuario> usuarios = service.listarTodos();
-		return usuarios;
+	public List<Avaliacoes> listarTodos() {
+		List<Avaliacoes> avaliacoes = service.listarTodos();
+		return avaliacoes;
 	}
 
 	@GetMapping("/{id}")
-	public Usuario pesquisarPorId(@PathVariable Integer id) {
-		return service.consultarPorId(id.longValue());
+	public Avaliacoes pesquisarPorId(@PathVariable Integer id) {
+		return service.pesqusarPorId(id.longValue());
 
 	}
+
 }
