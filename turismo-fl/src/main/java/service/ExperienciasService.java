@@ -27,33 +27,36 @@ public class ExperienciasService {
 		}
 	}
 
-	public Object atualizar(Experiencias atualizarExperiencia) {
-		// TODO Auto-generated method stub
-		return null;
+	public Experiencias atualizar(Experiencias novaExperiencia) throws CampoInvalidoException {
+		validarCamposObrigatorios(novaExperiencia);
+		if (novaExperiencia.getId() != null) {
+			return experienciasRepository.save(novaExperiencia);
+		} else {
+			throw new IllegalArgumentException("Não é possível atualizar uma experiência com ID indefinido");
+		}
 	}
 
-	public boolean excluir(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean excluir(Integer id) {
+		this.experienciasRepository.deleteById(id.longValue());
+		return true;
 	}
 
-	public Experiencias consultarPorId(long longValue) {
-		// TODO Auto-generated method stub
-		return null;
+	public Experiencias consultarPorId(long id) {
+		return experienciasRepository.findById(id).get();
 	}
 
 	public List<Experiencias> listarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Experiencias>) experienciasRepository.findAll();
 	}
 
 	public List<Experiencias> consultarComFiltros(ExperienciasSeletor seletor) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
-	private void validarCamposObrigatorios(Experiencias novaExperiencia) {
-		// TODO Auto-generated method stub
+	private void validarCamposObrigatorios(Experiencias novaExperiencia) throws CampoInvalidoException {
+		String mensagemValidacao="";
+		
 
 	}
 }
