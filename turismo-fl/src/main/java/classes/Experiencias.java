@@ -16,65 +16,82 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="experiencas")
+@Table(name = "experiencas")
 
 public class Experiencias {
-	
-	
-	public Experiencias(Long idExperiencias, String nome, String descricao, String cidade, String estado, String pais, Double preco, Date data, Double avaliacoes, Categoria categoria) {
+
+	public Experiencias(Long idExperiencias, String nome, String descricao, String cidade, String estado, String pais,
+			Double preco, Date data, Double avaliacoes, Categoria categoria) {
 		super();
 		this.idExperiencias = idExperiencias;
-		this.nome=nome;
-		this.descricao=descricao;
-		this.cidade=cidade;
-		this.estado=estado;
-		this.pais=pais;
-		this.preco=preco;
-		this.data=data;
-		this.avaliacoes=avaliacoes;
-		this.categoria=categoria;
-		
+		this.nome = nome;
+		this.descricao = descricao;
+		this.cidade = cidade;
+		this.estado = estado;
+		this.pais = pais;
+		this.preco = preco;
+		this.data = data;
+		this.avaliacoes = avaliacoes;
+		this.categoria = categoria;
+
 	}
 
 	public Experiencias() {
 		super();
-		
+
 	}
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	
-	@Column(name="idExperiencias", nullable= false, unique= true )
+
+	@Column(name = "id", nullable = false, unique = true)
 	private Long idExperiencias;
-	
-	@Column(name="nome", nullable=false)
+
+	@Column(name = "nome", nullable = false)
 	private String nome;
-	
-	@Column(name="descricao", nullable=false)
+
+	@Column(name = "descricao", nullable = false)
 	private String descricao;
-	
-	@Column(name="cidade", nullable=false)
+
+	@Column(name = "cidade", nullable = false)
 	private String cidade;
-	
-	@Column(name="estado", nullable=false)
+
+	@Column(name = "estado", nullable = false)
 	private String estado;
-	
-	@Column(name="pais", nullable=false)
+
+	@Column(name = "pais", nullable = false)
 	private String pais;
-	
-	@Column(name="preco", nullable=false)
+
+	@Column(name = "preco", nullable = false)
 	private Double preco;
-	
-	@Column(name="data_criacao", nullable=false)
+
+	@Column(name = "data_criacao", nullable = false)
 	private Date data;
-	
-	@Column(name="media_avaliacao", nullable=false)
+
+	@Column(name = "media_avaliacao", nullable = false)
 	private Double avaliacoes;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "categoria_id", nullable = false)
+	@JoinColumn(name = "id_categoria", nullable = false)
 	private Categoria categoria;
-	
+
+	public Long getIdExperiencias() {
+		return idExperiencias;
+	}
+
+	// ERRO NO LOMBOK? MANTER GETTERS E SETTERS
+
+	public void setIdExperiencias(Long idExperiencias) {
+		this.idExperiencias = idExperiencias;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }

@@ -38,7 +38,7 @@ public class Usuario {
 	private Long id;
 	
 	
-	@Column(name="idUsuario")
+	@Column(name="id")
 	private Long idUsuario;
 	
 	@Column(name = "nome", nullable = false)
